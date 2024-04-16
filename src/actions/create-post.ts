@@ -88,5 +88,5 @@ export async function createPost(
 
   //TODO: Revalidate the TopicShowPage
   revalidatePath(paths.topicShow(slug));
-  redirect(paths.postShow(slug, post.id));
+  redirect(paths.postShow(topic.slug, post.id));
 }
