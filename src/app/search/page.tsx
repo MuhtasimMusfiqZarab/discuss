@@ -15,6 +15,6 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
     redirect('/');
   }
 
-  /* @ts-expect-error Async Server Component */
+  /* @ts-ignore */
   return <PostList fetchData={() => fetchPostsBySearchTerm(term)} />;
 }

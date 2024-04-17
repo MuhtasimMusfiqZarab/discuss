@@ -27,11 +27,11 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
         {'< '}Back to {slug}
       </Link>
       <Suspense fallback={<PostShowLoading />}>
-        {/* @ts-expect-error Async Server Component */}
+        {/* @ts-ignore */}
         <PostShow postId={postId} />
       </Suspense>
       <CommentCreateForm postId={postId} startOpen />
-      {/* @ts-expect-error Async Server Component */}
+      {/* @ts-ignore */}
       <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
     </div>
   );
