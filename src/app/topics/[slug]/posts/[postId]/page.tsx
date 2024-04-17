@@ -4,6 +4,11 @@ import CommentList from '@/components/comments/comment-list';
 import CommentCreateForm from '@/components/comments/comment-create-form';
 import paths from '@/paths';
 
+import PostShowLoading from '@/components/posts/post-show-loading';
+
+//content streaming
+import { Suspense } from 'react';
+
 import { fetchCommentsByPostId } from '@/db/queries/comments';
 
 interface PostShowPageProps {
@@ -21,8 +26,10 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <Link className="underline decoration-solid" href={paths.topicShow(slug)}>
         {'< '}Back to {slug}
       </Link>
-      {/* @ts-expect-error Async Server Component */}
-      <PostShow postId={postId} />
+      <Suspense fallback={<PostShowLoading />}>
+        {/* @ts-expect-error Async Server Component */}
+        <PostShow postId={postId} />
+      </Suspense>
       <CommentCreateForm postId={postId} startOpen />
       {/* @ts-expect-error Async Server Component */}
       <CommentList fetchData={() => fetchCommentsByPostId(postId)} />
