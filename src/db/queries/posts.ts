@@ -1,6 +1,7 @@
 import type { Post } from '@prisma/client';
 import { db } from '@/db';
 
+//      first approach for defining type of returned data using typescript
 export type PostWithData = Post & {
   topic: {
     slug: string;
@@ -10,6 +11,10 @@ export type PostWithData = Post & {
   };
   _count: { comments: number };
 };
+
+// second and alternative approach if we dont want to write
+// returned type using typescript
+// export type PostWithData = Awaited<ReturnType<typeof fetchPostByTopicSlug>>[number];
 
 export function fetchPostByTopicSlug(slug: string): Promise<PostWithData[]> {
   return db.post.findMany({
