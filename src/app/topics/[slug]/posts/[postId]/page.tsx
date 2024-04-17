@@ -19,8 +19,9 @@ export default async function PostShowPage({ params }: PostShowPageProps) {
       <Link className="underline decoration-solid" href={paths.topicShow(slug)}>
         {'< '}Back to {slug}
       </Link>
-      {/* <PostShow /> */}
-      {/* <CommentCreateForm postId={postId} startOpen /> */}
+      {/* @ts-expect-error Async Server Component */}
+      <PostShow postId={postId} />
+      <CommentCreateForm postId={postId} startOpen />
       {/* <CommentList comments={comments} /> */}
     </div>
   );
